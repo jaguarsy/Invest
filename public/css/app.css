@@ -1,1 +1,35 @@
-/* Write your styles */
+.text-center{
+	text-align: center;
+}
+
+.inline-panel{
+	font-size: 1.4rem;
+	padding-right:5px;
+}
+
+.inline-panel input,.inline-panel select{
+	padding: .2em !important;
+}
+
+.inline-panel label.am-form-label{
+	padding-left: 0.3rem;
+	padding-right: 0;
+	padding-top: 0.3rem;
+}
+
+.inline-panel .am-form-group{
+	margin-bottom: 6px;
+}
+
+.inline-panel .am-form-group>div{
+	padding: 0;
+}
+
+.inline-panel .checkbox{
+	padding-top: 4px;
+	margin-left: 5px;
+}
+
+.inline-panel  .am-form-group>button{
+	margin-left: 0.3rem;
+}
