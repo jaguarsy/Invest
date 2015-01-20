@@ -44,10 +44,6 @@
       var $pullUp = $main.find('#pull-up');
       var topOffset = -$pullDown.outerHeight();
 
-      this.compiler = Handlebars.compile($('#tpi-list-item').html());
-      this.prev = this.next = this.start = options.params.start;
-      this.total = null;
-
       this.setLoading = function($el) {
         $el.addClass('loading');
       };
@@ -85,23 +81,11 @@
       };
 
       this.handlePullDown = function() {
-        console.log('handle pull down');
-        if (this.prev > 0) {
-          this.setLoading($pullDown);
-          this.prev -= options.params.count;
-        } else {
-          console.log('别刷了，没有了');
-        }
+
       };
 
       this.handlePullUp = function() {
-        console.log('handle pull up');
-        if (this.next < this.total) {
-          this.setLoading($pullUp);
-          this.next += options.params.count;
-        } else {
-          console.log(this.next);
-        }
+
       }
     };
 
