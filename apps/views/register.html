@@ -9,23 +9,32 @@
 	<div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
 		<form method="post" class="am-form">
 			<div class="am-form-group">
-				<label for="email">邮箱:</label>
-				<input type="email" id="email" class="am-form-field"></div>
+				<label for="account">帐号:</label>
+				<input type="text" id="account" class="am-form-field"></div>
 			<div class="am-form-group">
 				<label for="password">密码:</label>
 				<input type="password" id="password" class="am-form-field"></div>
 			<div class="am-form-group">
-				<label for="password">确认密码:</label>
-				<input type="password" id="password" class="am-form-field"></div>
+				<label for="confirm">确认密码:</label>
+				<input type="password" id="confirm" class="am-form-field"></div>
 			<div class="am-form-group">
-				<label for="password">手机号:</label>
-				<input type="text" id="phone" class="am-form-field"></div>
+				<label for="email">邮箱:</label>
+				<input type="text" id="email" class="am-form-field"></div>
 			<div class="am-cf">
-				<input type="submit" value="注 册" class="am-btn am-btn-primary am-fl" ng-click="" style="margin-right:5px;">
-				<a href="#/login" class="am-btn am-btn-default am-fl">取 消</a>
+				<input type="submit" value="注 册" class="am-btn am-btn-primary am-fl" ng-click="register()" style="margin-right:5px;">
+				<a href="#login" class="am-btn am-btn-default am-fl">取 消</a>
 			</div>
 		</form>
 		<hr>
 		<p>© 2015</p>
+	</div>
+	<div class="am-modal am-modal-alert" tabindex="-1" id="registerAlert">
+		<div class="am-modal-dialog">
+			<div class="am-modal-hd">提示</div>
+			<div class="am-modal-bd" ng-bind="message"></div>
+			<div class="am-modal-footer">
+				<span class="am-modal-btn">确定</span>
+			</div>
+		</div>
 	</div>
 </div>

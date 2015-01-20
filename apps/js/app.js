@@ -3,18 +3,23 @@
 var app = angular.module('testApp', ['ngRoute']),
 	permission;
 
-app.run(['permissions', function(permissions) {
-		permissions.authorize(permission)
-	}])
-	.config(['$routeProvider', '$locationProvider',
-		function($routeProvider, $locationProvider) {
+app.run([
+		'permissions',
+		function(permissions) {
+			permissions.authorize(permission)
+		}
+	])
+	.config([
+		'$routeProvider',
+		'$locationProvider',
+		function($routeProvider, $locationProvider, $httpProvider) {
 			$routeProvider
 				.when('/', {
-					templateUrl: 'apps/views/user.html',
+					templateUrl: 'apps/views/list.html',
 					controller: 'accountCtrl',
 					resolve: {
-						permission: function(permissions,$location) {
-							if(!permissions.isAuthorized()){
+						permission: function(permissions, $location) {
+							if (!permissions.isAuthorized()) {
 								$location.path('/login');
 							}
 						}
@@ -30,6 +35,14 @@ app.run(['permissions', function(permissions) {
 				})
 				.when('/user', {
 					templateUrl: 'apps/views/user.html',
+					controller: 'userCtrl'
+				})
+				.when('/usershow', {
+					templateUrl: 'apps/views/usershow.html',
+					controller: 'userCtrl'
+				})
+				.when('/userlist', {
+					templateUrl: 'apps/views/userlist.html',
 					controller: 'userCtrl'
 				})
 		}

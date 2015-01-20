@@ -8,7 +8,8 @@
 	<meta name="format-detection" content="telephone=no">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp" />
-	<!-- <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">-->
+	<!-- <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+	-->
 	<link rel="stylesheet" href="public/css/amazeui.min.css"/>
 	<link rel="stylesheet" href="public/css/app.css">
 	<style>
@@ -21,12 +22,31 @@
   </style>
 </head>
 <body>
+	<header data-am-widget="header" class="am-header am-header-default">
+		<div class="am-header-left am-header-nav">
+			<a href="#/" class=""> <i class="am-header-icon am-icon-home"></i>
+			</a>
+			<a href="#phone-link" class=""> <i class="am-header-icon am-icon-phone"></i>
+			</a>
+		</div>
+		<h1 class="am-header-title" invest-title></h1>
+		<div class="am-header-right am-header-nav" invest-show>
+			<a href="#user" class="">
+				<i class="am-header-icon am-icon-user"></i>
+			</a>
+			<a href="#login" class="">
+				<i class="am-header-icon am-icon-power-off"></i>
+			</a>
+		</div>
+	</header>
 	<div ng-view></div>
 	<script type="text/javascript" src="public/js/jquery.min.js"></script>
+	<script type="text/javascript" src="public/js/amazeui.min.js"></script>
 	<script type="text/javascript" src="public/js/angular.min.js"></script>
 	<script type="text/javascript" src="public/js/angular-route.min.js"></script>
 	<script type="text/javascript" src="apps/js/app.js"></script>
 	<script type="text/javascript" src="apps/js/service.js"></script>
+	<script type="text/javascript" src="apps/js/directive.js"></script>
 	<script type="text/javascript" src="apps/js/controller.js"></script>
 </body>
 </html>
