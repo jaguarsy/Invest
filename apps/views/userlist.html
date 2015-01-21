@@ -1,10 +1,28 @@
 <div ng-controller="userlistCtrl">
+	<div class="search-panel am-g">
+		<div class="am-u-sm-8">
+			<input type="checkbox" class="item-control">
+			<label class="item-label">我的好友</label>
+			<select class="item-control">
+				<option>金融业</option>
+			</select>
+			<label class="item-label">行业</label>
+		</div>
+		<div class="am-u-sm-4">
+			<input class="search"  type="text" placeholder="搜索"/>
+		</div>
+	</div>
 	<ul class="userdetail am-list am-list-static">
 		<li>
-			<div class="checkbox">
-				<label>
-						<input type="checkbox">我的好友
-				</label>
+			<div class="item photo">
+				<img src="public/images/logo.png">
+			</div>
+			<div class="item detail">
+				<h3>李XX</h3>
+				<p><small>我公司主要XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</small></p>
+			</div>
+			<div class="item option">
+				<a href="#"><span class="am-badge am-badge-primary">详细</span></a>
 			</div>
 		</li>
 	</ul>

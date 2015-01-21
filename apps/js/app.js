@@ -1,12 +1,11 @@
 "use strict"
 
-var app = angular.module('testApp', ['ngRoute']),
+var app = angular.module('testApp', ['ngRoute','ngCookies']),
 	permission;
 
 app.run([
-		'permissions',
-		function(permissions) {
-			permissions.authorize(permission)
+		function() {
+			
 		}
 	])
 	.config([
@@ -27,7 +26,14 @@ app.run([
 				})
 				.when('/login', {
 					templateUrl: 'apps/views/login.html',
-					controller: 'accountCtrl'
+					controller: 'accountCtrl',
+					resolve: {
+						permission: function(permissions, $location) {
+							if (permissions.isAuthorized()) {
+								$location.path('/');
+							}
+						}
+					}
 				})
 				.when('/register', {
 					templateUrl: 'apps/views/register.html',

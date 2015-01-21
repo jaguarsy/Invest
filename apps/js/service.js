@@ -1,16 +1,25 @@
 angular.module('testApp')
-	.factory('permissions', function($rootScope) {
-		var isAuthorized;
-		return {
-			authorize: function(permission) {
-				isAuthorized = permission;
-				$rootScope.$broadcast('permissionsChanged')
-			},
-			isAuthorized: function() {
-				return isAuthorized;
-			}
-		};
-	})
+	.factory('permissions', [
+		'$rootScope',
+		'$cookies',
+		function($rootScope, $cookies) {
+			return {
+				authorize: function(token) {
+					$cookies.token = token;
+					$rootScope.$broadcast('permissionsChanged')
+				},
+				isAuthorized: function() {
+					return $cookies.token != undefined;
+				},
+				getToken: function() {
+					return $cookies.token;
+				},
+				unauthorize: function(){
+					delete $cookies.token;
+				}
+			};
+		}
+	])
 	.factory('httplib', [
 		'$http',
 		function($http) {
@@ -22,9 +31,9 @@ angular.module('testApp')
 							url: api + url,
 							//withCredentials: true,
 							data: data,
-							headers: {
-								Authorization: 'Basic YmVlcDpib29w'
-							}
+							// headers: {
+							// 	Authorization: 'Basic YmVlcDpib29w'
+							// }
 						})
 						.success(function(data, status) {
 							callback(data, status);

@@ -25,12 +25,17 @@ angular.module('testApp')
 		'permissions',
 		function(permissions) {
 			function link(scope, element, attrs) {
-				scope.$on('$locationChangeSuccess', function() {
+				function toggle() {
 					if (permissions.isAuthorized()) {
 						element.removeClass('hidden')
 					} else {
 						element.addClass('hidden')
 					}
+				}
+				toggle()
+				
+				scope.$on('$locationChangeSuccess', function() {
+					toggle();
 				})
 			}
 

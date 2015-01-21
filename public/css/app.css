@@ -14,6 +14,7 @@
 .inline-panel label.am-form-label{
 	padding-left: 0;
 	padding-top: 0.3rem;
+	padding-right: 0.3rem;
 }
 
 .inline-panel .am-form-group{
@@ -35,11 +36,72 @@
 }
 
 .userdetail li{
-	padding-left: 5px;
-	padding-right: 5px;
+	padding: 0px;
+}
+
+.userdetail li .item{
+	display: inline-block;
+	vertical-align:middle;
+}
+
+.userdetail li .item h3, .userdetail li .item p{
+	margin: 0;
+}
+
+.userdetail li .photo{
+	width: 20%;
+	padding: 5px;
+}
+
+.userdetail li .detail{
+	width: 65%;
+}
+
+.userdetail li .option{
+	width: 10%;
+}
+
+.userdetail li .detail p{
+	white-space: nowrap;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+.userdetail li .option span{
+	padding: 10px 5px 10px 5px;
 }
 
 .hidden{
 	display: none !important;
   	visibility: hidden !important;
+}
+
+.search-panel{
+	font-size: 12px;
+	padding-top: 10px;
+}
+
+.search-panel div{
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.search-panel .item-control, .search-panel .item-label{
+	vertical-align:middle;
+	margin:0;
+}
+
+.search-panel select{
+	display: inline;
+	width: 70px;
+	padding: 0 1px 0 1px;
+	margin-left: 10px;
+}
+
+.search-panel .search{
+	display: inline;
+	/*float: right;*/
+	width: 100%;
+	padding: 0;
 }

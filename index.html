@@ -22,8 +22,8 @@
   </style>
 </head>
 <body>
-	<header data-am-widget="header" class="am-header am-header-default">
-		<div class="am-header-left am-header-nav">
+	<header data-am-widget="header" class="am-header am-header-default" ng-controller="IndexCtrl">
+		<div class="am-header-left am-header-nav" invest-show>
 			<a href="#/" class=""> <i class="am-header-icon am-icon-home"></i>
 			</a>
 			<a href="#phone-link" class=""> <i class="am-header-icon am-icon-phone"></i>
@@ -34,7 +34,7 @@
 			<a href="#user" class="">
 				<i class="am-header-icon am-icon-user"></i>
 			</a>
-			<a href="#login" class="">
+			<a  class="" ng-click="logout()">
 				<i class="am-header-icon am-icon-power-off"></i>
 			</a>
 		</div>
@@ -44,6 +44,7 @@
 	<script type="text/javascript" src="public/js/amazeui.min.js"></script>
 	<script type="text/javascript" src="public/js/angular.min.js"></script>
 	<script type="text/javascript" src="public/js/angular-route.min.js"></script>
+	<script type="text/javascript" src="public/js/angular-cookies.min.js"></script>
 	<script type="text/javascript" src="apps/js/app.js"></script>
 	<script type="text/javascript" src="apps/js/service.js"></script>
 	<script type="text/javascript" src="apps/js/directive.js"></script>
