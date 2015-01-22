@@ -1,13 +1,11 @@
 "use strict"
 
-var app = angular.module('testApp', ['ngRoute','ngCookies']),
-	permission;
+var permission,
+	app = angular.module('testApp', ['ngRoute', 'ngCookies']);
 
-app.run([
-		function() {
-			
-		}
-	])
+app.run([function() {
+
+	}])
 	.config([
 		'$routeProvider',
 		'$locationProvider',
@@ -43,13 +41,13 @@ app.run([
 					templateUrl: 'apps/views/user.html',
 					controller: 'userCtrl'
 				})
-				.when('/usershow', {
+				.when('/usershow/:id', {
 					templateUrl: 'apps/views/usershow.html',
-					controller: 'userCtrl'
+					controller: 'usershowCtrl'
 				})
 				.when('/userlist', {
 					templateUrl: 'apps/views/userlist.html',
-					controller: 'userCtrl'
+					controller: 'userlistCtrl'
 				})
 		}
 	])

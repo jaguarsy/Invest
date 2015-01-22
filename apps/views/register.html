@@ -5,21 +5,21 @@
 	</div>
 </div>
 <hr/>
-<div class="am-g" ng-controller="accountCtrl">
+<div class="am-g">
 	<div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
 		<form method="post" class="am-form">
 			<div class="am-form-group">
 				<label for="account">帐号:</label>
-				<input type="text" id="account" class="am-form-field"></div>
+				<input type="text" id="account" ng-model="username" class="am-form-field"></div>
 			<div class="am-form-group">
 				<label for="password">密码:</label>
-				<input type="password" id="password" class="am-form-field"></div>
+				<input type="password" id="password" ng-model="password"  class="am-form-field"></div>
 			<div class="am-form-group">
 				<label for="confirm">确认密码:</label>
-				<input type="password" id="confirm" class="am-form-field"></div>
+				<input type="password" id="confirm" ng-model="cpassword" class="am-form-field"></div>
 			<div class="am-form-group">
 				<label for="email">邮箱:</label>
-				<input type="text" id="email" class="am-form-field"></div>
+				<input type="text" id="email" ng-model="email" class="am-form-field"></div>
 			<div class="am-cf">
 				<input type="submit" value="注 册" class="am-btn am-btn-primary am-fl" ng-click="register()" style="margin-right:5px;">
 				<a href="#login" class="am-btn am-btn-default am-fl">取 消</a>
