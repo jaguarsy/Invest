@@ -9,7 +9,8 @@ angular.module('testApp')
 					'/register': '用户注册',
 					'/user': '用户资料',
 					'/usershow': '个人资料',
-					'/userlist': '名片列表'
+					'/userlist': '名片列表',
+					'/project': '创建项目'
 				};
 				scope.$on('$locationChangeSuccess', function() {
 					element.text(path[$location.url()])
@@ -33,7 +34,7 @@ angular.module('testApp')
 					}
 				}
 				toggle()
-				
+
 				scope.$on('$locationChangeSuccess', function() {
 					toggle();
 				})

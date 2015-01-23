@@ -13,7 +13,7 @@
 
 .inline-panel label.am-form-label{
 	padding-left: 0;
-	padding-top: 0.3rem;
+	padding-top: 0.29rem;
 	padding-right: 0.3rem;
 }
 
@@ -104,4 +104,13 @@
 	/*float: right;*/
 	width: 100%;
 	padding: 0;
+}
+
+.inline-panel .inline-group label{
+	width: auto;
+}
+
+.inline-panel .inline-group select,.inline-panel .inline-group input{
+	display: inline;
+	width: 50%;
 }

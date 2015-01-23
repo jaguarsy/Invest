@@ -1,15 +1,14 @@
 <div>
 	<ul class="userdetail am-list am-list-static">
-		<li>姓名：XXXX</li>
-		<li>性别：XXXX</li>
-		<li>公司名称：XXXX</li>
-		<li>职务：XXXX</li>
-		<li>行业：XXXX</li>
-		<li>手机号：XXXXXXXXXXX</li>
-		<li>微信号：XXXXXXXXX</li>
-		<li>邮箱：XXXXXXXX</li>
-		<li>常住地：XXXXXXXX</li>
-		<li>个人介绍：XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
+		<li>姓名：<strong ng-bind-template="{{user.FirstName}}{{user.LastName}}"></strong></li>
+		<li>性别：<strong ng-bind="user.Gender"></strong></li>
+		<li>公司名称：<strong ng-bind="user.Company"></strong</li>
+		<li>职务：<strong ng-bind="user.Position"></strong</li>
+		<li>行业：<strong ng-bind="user.TabIndustry.IndustryText"></strong</li>
+		<li>手机号：<strong ng-bind="user.CellPhone"></strong</li>
+		<li>微信号：<strong ng-bind="user.WeiXinAccount"></strong</li>
+		<li>邮箱：<strong ng-bind="user.Email"></strong</li>
+		<li>个人介绍：<strong ng-bind="user.PersonIntroduction"></strong</li>
 	</ul>
 	<p class="text-center"><a href="#" class="am-btn am-btn-primary am-btn-sm">返回</a></p>
 </div>

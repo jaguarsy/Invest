@@ -16,29 +16,38 @@ angular.module('testApp')
 		'$location',
 		'httplib',
 		function(permissions, $scope, $location, httplib) {
+			var $alert = $('#alert'),
+				$loading = $('#loading');
+
 
 			$scope.register = function() {
 				httplib.post('AuthApi/register', {
-					"UserName": $scope.username,
-					"Email": $scope.email,
-					"Password": $scope.password,
-					"ConfirmPassword": $scope.cpassword
+					UserName: $scope.username,
+					Email: $scope.email,
+					Password: $scope.password,
+					ConfirmPassword: $scope.cpassword
 				}, false, function(data, status) {
-					$scope.message = status;
-					$('#registerAlert').modal();
-					$location.path('/login');
+					$scope.message = (status == '200' ? '注册成功！点击确定后登录。' : '注册失败！');
+					$alert.modal();
+					login($scope.username, $scope.password);
 				})
 			}
 
-			$scope.login = function() {
-				httplib.get('AuthApi/login?UserName=' + $scope.account + '&Password=' + $scope.password,
+			var login = function(username, password) {
+				$loading.modal('open')
+				httplib.get('AuthApi/login?UserName=' + username + '&Password=' + password,
 					false,
 					function(data) {
 						if (data.token) {
-							permissions.authorize(data.token, $scope.account);
+							permissions.authorize(data.token, username);
+							$loading.modal('close')
 							$location.path('/')
 						}
 					})
+			}
+
+			$scope.login = function() {
+				login($scope.account, $scope.password);
 			}
 		}
 	])
@@ -46,9 +55,17 @@ angular.module('testApp')
 		'httplib',
 		'permissions',
 		'$scope',
-		function(httplib, permissions, $scope) {
-			httplib.get('TabIndustry', true, function(data) {
+		'$location',
+		function(httplib, permissions, $scope, $location) {
+			var $alert = $('#alert'),
+				$loading = $('#loading');
+
+			httplib.get('TabIndustry', true, function(data, status) {
 				$scope.industry = data;
+				if (status == '401') {
+					permissions.unauthorize();
+					$location.path('/login')
+				}
 				httplib.get('CommonUserDetail?account=' + permissions.getAccount(),
 					true,
 					function(data) {
@@ -56,20 +73,28 @@ angular.module('testApp')
 					})
 			})
 
-			$scope.submit = function(){
-				httplib.put('CommonUserDetail',
+			$scope.submit = function() {
+				httplib.put('CommonUserDetail/' + $scope.user.Id,
 					$scope.user,
 					true,
-					function(data) {
-						console.log(data)
+					function(data, status) {
+						$scope.message = (status == '204' ? '修改成功！' : '修改失败！');
+						$alert.modal();
 					})
 			}
 		}
 	])
 	.controller('usershowCtrl', [
 		'$routeParams',
-		function($routeParams) {
-			console.log($routeParams.id)
+		'$scope',
+		'httplib',
+		function($routeParams, $scope, httplib) {
+			httplib.get('CommonUserDetail/' + $routeParams.id,
+				true,
+				function(data) {
+					console.log(data)
+					//$scope.user = data;
+				})
 		}
 	])
 	.controller('userlistCtrl', [function() {}])
@@ -79,3 +104,4 @@ angular.module('testApp')
 			// alert(permissions.getToken())
 		}
 	])
+	.controller('projectCtrl', [function() {}])

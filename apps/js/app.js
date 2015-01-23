@@ -49,6 +49,10 @@ app.run([function() {
 					templateUrl: 'apps/views/userlist.html',
 					controller: 'userlistCtrl'
 				})
+				.when('/project', {
+					templateUrl: 'apps/views/project.html',
+					controller: 'projectCtrl'
+				})
 		}
 	])
 

@@ -74,7 +74,7 @@
 				</div>
 				<label class="am-u-sm-2 am-u-md-2 am-form-label" style="padding-left:5px;">微信</label>
 				<div class="am-u-sm-4 am-u-md-3">
-					<input type="text" ng-value="user.WeiXinAccount"/>
+					<input type="text" ng-value="user.WeiXinAccount" ng-model="user.WeiXinAccount"/>
 				</div>
 				<div class="am-u-md-2"></div>
 			</div>
@@ -82,8 +82,8 @@
 			<div class="am-form-group">
 				<label class="am-u-sm-2 am-u-md-2 am-form-label">行业</label>
 				<div class="am-u-sm-7 am-u-md-8">
-					<select ng-value="user.TabIndustry.IndustryText" ng-model="user.IndustryText">
-						<option ng-repeat="item in industry" value="{{item.IndustryText}}"></option>
+					<select ng-model="user.IndustryId">
+						<option ng-repeat="item in industry" value="{{item.Id}}" ng-bind="item.IndustryText"></option>
 					</select>
 				</div>
 				<div class="am-u-sm-3 am-u-md-2">
@@ -121,5 +121,14 @@
 				</div>
 			</div>
 		</form>
+	</div>
+</div>
+<div class="am-modal am-modal-alert" tabindex="-1" id="alert">
+	<div class="am-modal-dialog">
+		<div class="am-modal-hd">提示</div>
+		<div class="am-modal-bd" ng-bind="message"></div>
+		<div class="am-modal-footer">
+			<span class="am-modal-btn">确定</span>
+		</div>
 	</div>
 </div>
