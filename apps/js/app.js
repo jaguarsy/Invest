@@ -37,6 +37,10 @@ app.run([function() {
 					templateUrl: 'apps/views/register.html',
 					controller: 'accountCtrl'
 				})
+				.when('/setting',{
+					templateUrl: 'apps/views/setting.html',
+					controller: 'settingCtrl'
+				})
 				.when('/user', {
 					templateUrl: 'apps/views/user.html',
 					controller: 'userCtrl'

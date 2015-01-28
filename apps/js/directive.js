@@ -10,7 +10,8 @@ angular.module('testApp')
 					'/user': '用户资料',
 					'/usershow': '个人资料',
 					'/userlist': '名片列表',
-					'/project': '创建项目'
+					'/project': '创建项目',
+					'/setting': '设置'
 				};
 				scope.$on('$locationChangeSuccess', function() {
 					element.text(path[$location.url()])

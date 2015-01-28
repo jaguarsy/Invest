@@ -116,9 +116,8 @@
 			</div>
 
 			<div class="am-form-group">
-				<div class="am-u-md-offset-2">
-					<button class="am-btn am-btn-sm am-btn-primary" ng-click="submit()">提交</button>
-				</div>
+				<button class="am-btn am-btn-primary am-fr" ng-click="submit()">提交</button>
+				<button class="am-btn am-btn-default am-fr" ng-click="cancel()">取消</button>
 			</div>
 		</form>
 	</div>
@@ -129,6 +128,16 @@
 		<div class="am-modal-bd" ng-bind="message"></div>
 		<div class="am-modal-footer">
 			<span class="am-modal-btn">确定</span>
+		</div>
+	</div>
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="confirm">
+	<div class="am-modal-dialog">
+		<div class="am-modal-hd">确认</div>
+		<div class="am-modal-bd">你确定取消编辑个人资料吗？</div>
+		<div class="am-modal-footer">
+			<span class="am-modal-btn" data-am-modal-cancel>取消</span>
+			<span class="am-modal-btn" data-am-modal-confirm>确定</span>
 		</div>
 	</div>
 </div>

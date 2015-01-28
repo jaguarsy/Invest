@@ -1,14 +1,6 @@
 angular.module('testApp')
 	.controller('IndexCtrl', [
-		'permissions',
-		'$location',
-		'$scope',
-		function(permissions, $location, $scope) {
-			$scope.logout = function() {
-				permissions.unauthorize();
-				$location.path('/login')
-			}
-		}
+		function() {}
 	])
 	.controller('accountCtrl', [
 		'permissions',
@@ -17,19 +9,41 @@ angular.module('testApp')
 		'httplib',
 		function(permissions, $scope, $location, httplib) {
 			var $alert = $('#alert'),
+				$confirm = $('#confirm'),
 				$loading = $('#loading');
 
 
 			$scope.register = function() {
+				if ($scope.password != $scope.cpassword) {
+					$scope.message = '两次输入的密码不同';
+					$alert.modal();
+					return;
+				}
+
 				httplib.post('AuthApi/register', {
 					UserName: $scope.username,
 					Email: $scope.email,
 					Password: $scope.password,
 					ConfirmPassword: $scope.cpassword
 				}, false, function(data, status) {
-					$scope.message = (status == '200' ? '注册成功！点击确定后登录。' : '注册失败！');
+					if (status == 200) {
+						$confirm.modal({
+							relatedTarget: this,
+							onConfirm: function() {
+								$confirm.modal('close');
+								login($scope.username, $scope.password);
+							},
+							onCancel: function() {
+								$confirm.modal('close');
+							}
+						});
+					} else {
+						$scope.message = '注册失败！';
+						$alert.modal();
+					}
+				}, function(data, status) {
+					$scope.message = data.Message;
 					$alert.modal();
-					login($scope.username, $scope.password);
 				})
 			}
 
@@ -37,17 +51,41 @@ angular.module('testApp')
 				$loading.modal('open')
 				httplib.get('AuthApi/login?UserName=' + username + '&Password=' + password,
 					false,
-					function(data) {
+					function(data, status) {
+						$loading.modal('close')
 						if (data.token) {
 							permissions.authorize(data.token, username);
-							$loading.modal('close')
 							$location.path('/')
 						}
+					},
+					function(data, status) {
+						$loading.modal('close')
+						$scope.message = "用户名或密码错误。";
+						$alert.modal();
 					})
 			}
 
 			$scope.login = function() {
 				login($scope.account, $scope.password);
+			}
+		}
+	])
+	.controller('settingCtrl', [
+		'permissions',
+		'$location',
+		'$scope',
+		function(permissions, $location, $scope) {
+			var $confirm = $('#confirm');
+
+			$scope.logout = function() {
+				$confirm.modal({
+					onConfirm: function() {
+						$confirm.modal('close');
+						permissions.unauthorize();
+						$location.path('/');
+						$scope.$apply();
+					}
+				});
 			}
 		}
 	])
@@ -58,6 +96,7 @@ angular.module('testApp')
 		'$location',
 		function(httplib, permissions, $scope, $location) {
 			var $alert = $('#alert'),
+				$confirm = $('#confirm'),
 				$loading = $('#loading');
 
 			httplib.get('TabIndustry', true, function(data, status) {
@@ -82,6 +121,16 @@ angular.module('testApp')
 						$alert.modal();
 					})
 			}
+
+			$scope.cancel = function() {
+				$confirm.modal({
+					onConfirm: function() {
+						$confirm.modal('close');
+						$location.path('/setting');
+						$scope.$apply();
+					}
+				});
+			}
 		}
 	])
 	.controller('usershowCtrl', [
@@ -93,7 +142,7 @@ angular.module('testApp')
 				true,
 				function(data) {
 					console.log(data)
-					//$scope.user = data;
+						//$scope.user = data;
 				})
 		}
 	])
@@ -104,4 +153,20 @@ angular.module('testApp')
 			// alert(permissions.getToken())
 		}
 	])
-	.controller('projectCtrl', [function() {}])
+	.controller('projectCtrl', [
+		'$scope',
+		'$location',
+		function($scope, $location) {
+			var $confirm = $('#confirm');
+
+			$scope.cancel = function() {
+				$confirm.modal({
+					onConfirm: function() {
+						$confirm.modal('close');
+						$location.path('/setting');
+						$scope.$apply();
+					}
+				});
+			}
+		}
+	])
