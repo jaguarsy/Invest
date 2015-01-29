@@ -3,42 +3,42 @@
 		<form class="am-form">
 			<div class="am-form-group">
 				<label class="am-u-sm-6 am-u-md-3 am-form-label">1.项目完整名称：</label>
-					<input type="text"/>
+					<input type="text" ng-model="project.ProjectFullName"/>
 			</div>
 			<div class="am-form-group">
 				<label class="am-u-sm-6 am-u-md-3 am-form-label">2.项目对外开放名称：</label>
-					<input type="text"/>
+					<input type="text" ng-model="project.ProjectOpenName"/>
 			</div>
-			<div class="am-form-group inline-group">
+			<!-- <div class="am-form-group inline-group">
 				<label class="am-u-sm-6 am-u-md-3 am-form-label">3.融资类型：</label>
 					<select class="inline-select"></select>
+			</div> -->
+			<div class="am-form-group inline-group">
+				<label class="am-u-sm-6 am-u-md-3 am-form-label">3.所属行业：</label>
+					<select class="inline-select" ng-model="project.TabIndustry"></select>
 			</div>
 			<div class="am-form-group inline-group">
-				<label class="am-u-sm-6 am-u-md-3 am-form-label">4.所属行业：</label>
-					<select class="inline-select"></select>
+				<label class="am-u-sm-6 am-u-md-3 am-form-label">4.发展阶段：</label>
+					<select class="inline-select" ng-model="project.TabProjectState"></select>
 			</div>
 			<div class="am-form-group inline-group">
-				<label class="am-u-sm-6 am-u-md-3 am-form-label">5.发展阶段：</label>
-					<select class="inline-select"></select>
+				<label class="am-u-sm-6 am-u-md-3 am-form-label">5.所属区域：</label>
+					<select class="inline-select" ng-model="project.TabPersonLocation"></select>
 			</div>
 			<div class="am-form-group inline-group">
-				<label class="am-u-sm-6 am-u-md-3 am-form-label">6.所属区域：</label>
-					<select class="inline-select"></select>
+				<label class="am-u-sm-6 am-u-md-3 am-form-label">6.企业性质：</label>
+					<select class="inline-select" ng-model="project.TabCompanyNature"></select>
 			</div>
 			<div class="am-form-group inline-group">
-				<label class="am-u-sm-6 am-u-md-3 am-form-label">7.企业性质：</label>
-					<select class="inline-select"></select>
-			</div>
-			<div class="am-form-group inline-group">
-				<label class="am-u-sm-6 am-u-md-3 am-form-label">8.融资规模：</label>
-					<input type="number">
+				<label class="am-u-sm-6 am-u-md-3 am-form-label">7.融资规模：</label>
+					<input type="number" ng-model="project.FinancingSize"/>
 			</div>
 			<div class="am-form-group">
-				<label class="am-u-sm-6 am-u-md-3 am-form-label">9.项目内容：</label>
-				<textarea></textarea>
+				<label class="am-u-sm-6 am-u-md-3 am-form-label">8.项目内容：</label>
+				<textarea ng-model="project.ProjectIntroduction"></textarea>
 			</div>
 			<div class="am-form-group">
-				<button class="am-btn am-btn-primary am-fr">提交</button>
+				<button class="am-btn am-btn-primary am-fr" ng-click="submit()">提交</button>
 				<button class="am-btn am-btn-default am-fr" ng-click="cancel()">取消</button>
 			</div>
 		</form>
@@ -57,7 +57,7 @@
 <div class="am-modal am-modal-confirm" tabindex="-1" id="confirm">
 	<div class="am-modal-dialog">
 		<div class="am-modal-hd">确认</div>
-		<div class="am-modal-bd">你确定放弃新建项目吗？</div>
+		<div class="am-modal-bd">你确定取消编辑吗？</div>
 		<div class="am-modal-footer">
 			<span class="am-modal-btn" data-am-modal-cancel>取消</span>
 			<span class="am-modal-btn" data-am-modal-confirm>确定</span>

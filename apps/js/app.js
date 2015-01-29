@@ -57,6 +57,14 @@ app.run([function() {
 					templateUrl: 'apps/views/project.html',
 					controller: 'projectCtrl'
 				})
+				.when('/project/:id', {
+					templateUrl: 'apps/views/project.html',
+					controller: 'projectCtrl'
+				})
+				.when('/myproject', {
+					templateUrl: 'apps/views/myproject.html',
+					controller: 'myProjectCtrl'
+				})
 		}
 	])
 

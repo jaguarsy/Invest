@@ -50,7 +50,7 @@ angular.module('testApp')
 							callback(data, status);
 						})
 						.error(function(data, status) {
-							if(!errorCallback) return;
+							if (!errorCallback) return;
 							errorCallback(data, status);
 						})
 				},
@@ -65,6 +65,16 @@ angular.module('testApp')
 				},
 				delete: function(url, data, auth, callback, error) {
 					this.http('DELETE', url, auth, callback, data, error);
+				}
+			}
+		}
+	])
+	.factory('investlib', [
+		'$location',
+		function($location) {
+			return {
+				open: function(url) {
+					$location.path(url);
 				}
 			}
 		}

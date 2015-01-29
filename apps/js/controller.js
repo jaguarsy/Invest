@@ -5,13 +5,12 @@ angular.module('testApp')
 	.controller('accountCtrl', [
 		'permissions',
 		'$scope',
-		'$location',
 		'httplib',
-		function(permissions, $scope, $location, httplib) {
+		'investlib',
+		function(permissions, $scope, httplib, investlib) {
 			var $alert = $('#alert'),
 				$confirm = $('#confirm'),
 				$loading = $('#loading');
-
 
 			$scope.register = function() {
 				if ($scope.password != $scope.cpassword) {
@@ -28,7 +27,6 @@ angular.module('testApp')
 				}, false, function(data, status) {
 					if (status == 200) {
 						$confirm.modal({
-							relatedTarget: this,
 							onConfirm: function() {
 								$confirm.modal('close');
 								login($scope.username, $scope.password);
@@ -55,7 +53,8 @@ angular.module('testApp')
 						$loading.modal('close')
 						if (data.token) {
 							permissions.authorize(data.token, username);
-							$location.path('/')
+							//$location.path('/')
+							investlib.open('/')
 						}
 					},
 					function(data, status) {
@@ -101,13 +100,14 @@ angular.module('testApp')
 
 			httplib.get('TabIndustry', true, function(data, status) {
 				$scope.industry = data;
-				if (status == '401') {
+				if (status == 401) {
 					permissions.unauthorize();
 					$location.path('/login')
 				}
 				httplib.get('CommonUserDetail?account=' + permissions.getAccount(),
 					true,
 					function(data) {
+						console.log(data)
 						$scope.user = data;
 					})
 			})
@@ -117,8 +117,15 @@ angular.module('testApp')
 					$scope.user,
 					true,
 					function(data, status) {
-						$scope.message = (status == '204' ? '修改成功！' : '修改失败！');
-						$alert.modal();
+						$scope.message = (status == 204 ? '修改成功！' : '修改失败！');
+						$alert.modal({
+							onConfirm: function() {
+								if (status != 204) return;
+								$alert.modal('close');
+								$location.path('/setting');
+								$scope.$apply();
+							}
+						});
 					})
 			}
 
@@ -156,8 +163,34 @@ angular.module('testApp')
 	.controller('projectCtrl', [
 		'$scope',
 		'$location',
-		function($scope, $location) {
-			var $confirm = $('#confirm');
+		'httplib',
+		'$routeParams',
+		function($scope, $location, httplib, $routeParams) {
+			var $confirm = $('#confirm'),
+				id = $routeParams.id;
+
+			if (id) {
+				httplib.get('TabProject/' + id, true, function(data, status) {
+					$scope.project = data;
+				})
+			}
+
+			$scope.submit = function() {
+				if (id) {
+					httplib.put('TabProject/' + id, $scope.project,
+						true,
+						function(data, status) {
+							$location.path('/myproject');
+						})
+				} else {
+					httplib.post('TabProject', $scope.project,
+						true,
+						function(data, status) {
+							if (status == 201)
+								$location.path('/myproject');
+						})
+				}
+			}
 
 			$scope.cancel = function() {
 				$confirm.modal({
@@ -168,5 +201,14 @@ angular.module('testApp')
 					}
 				});
 			}
+		}
+	])
+	.controller('myProjectCtrl', [
+		'$scope',
+		'httplib',
+		function($scope, httplib) {
+			httplib.get('TabProject', true, function(data, status) {
+				$scope.list = data;
+			})
 		}
 	])

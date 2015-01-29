@@ -4,17 +4,30 @@ angular.module('testApp')
 		function($location) {
 			function link(scope, element, attrs) {
 				var path = {
-					'/': '项目列表',
-					'/login': '用户登录',
-					'/register': '用户注册',
-					'/user': '用户资料',
-					'/usershow': '个人资料',
-					'/userlist': '名片列表',
-					'/project': '创建项目',
-					'/setting': '设置'
+					'^\/$': '项目列表',
+					'^\/login$': '用户登录',
+					'^\/register$': '用户注册',
+					'^\/user$': '用户资料',
+					'^\/usershow$': '个人资料',
+					'^\/userlist$': '名片列表',
+					'^\/project$': '创建项目',
+					'^\/project\/\\d+$': '修改项目',
+					'^\/setting$': '设置',
+					'^\/myproject$': '我的项目'
 				};
+
+				var getTitle = function(url) {
+					for (var key in path) {
+						var re = new RegExp(key)
+						if (re.test(url)) {
+							return path[key];
+						}
+					}
+				}
+
 				scope.$on('$locationChangeSuccess', function() {
-					element.text(path[$location.url()])
+					var title = getTitle($location.url())
+					element.text(title)
 				});
 			}
 
@@ -46,3 +59,17 @@ angular.module('testApp')
 			}
 		}
 	])
+	.directive('backButton', function() {
+		return {
+			restrict: 'A',
+
+			link: function(scope, element, attrs) {
+				element.bind('click', goBack);
+
+				function goBack() {
+					history.back();
+					scope.$apply();
+				}
+			}
+		}
+	})

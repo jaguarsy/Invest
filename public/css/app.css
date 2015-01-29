@@ -114,3 +114,8 @@
 	display: inline;
 	width: 50%;
 }
+
+.setting-list li a i{
+	width: 20px;
+	text-align: center;
+}
