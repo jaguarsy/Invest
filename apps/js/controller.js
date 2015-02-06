@@ -69,19 +69,98 @@ angular.module('testApp')
 			}
 		}
 	])
-	.controller('settingCtrl', [
-		'permissions',
-		'$location',
+	.controller('listCtrl', [
+		'httplib',
 		'$scope',
-		function(permissions, $location, $scope) {
-			var $confirm = $('#confirm');
+		function(httplib, $scope) {
+			var iScroll,
+				topOffset = -$('#pull-down').outerHeight(),
+				pullUp = $('#pull-up');
+
+			$scope.isPulldown = false;
+			$scope.isLoadingMore = false;
+
+			var renderList = function(page, size, type) {
+				httplib.get('TabProject?page=' + page + '&pagesize=' + size,
+					true,
+					function(data, status) {
+						$scope.project = data.ResultList;
+						setTimeout(function() {
+							iScroll.refresh();
+						}, 100);
+						$scope.isPulldown = false;
+						$scope.isLoadingMore = false;
+						if (type != 'load') {
+							iScroll.scrollTo(0, topOffset, 800, $.AMUI.iScroll.utils.circular);
+						}
+					})
+			}
+
+			var init = function() {
+				var page = 1,
+					pageSize = 10,
+					pullFormTop = false,
+					pullStart;
+
+				iScroll = new $.AMUI.iScroll('#wrapper', {});
+				renderList(1, pageSize);
+
+				var handlePullDown = function() {
+					$scope.isPulldown = true;
+					renderList(1, pageSize);
+				};
+
+				iScroll.on('scrollStart', function() {
+					if (this.y >= topOffset) {
+						pullFormTop = true;
+					}
+
+					pullStart = this.y;
+				});
+
+				iScroll.on('scrollEnd', function() {
+					if (pullFormTop && this.directionY === -1) {
+						handlePullDown();
+					}
+					pullFormTop = false;
+				});
+
+				pullUp.on('inview:scrollspy:amui', function() {
+					console.log('进入视口');
+				}).on('outview:scrollspy:amui', function() {
+					console.log('离开视口');
+				});
+			}
+
+			init();
+			$scope.addFriend = function(project) {
+				httplib.post('TabFpUserRelation',
+					true, {},
+					function(data, status) {
+						$scope.project = data;
+					})
+			}
+		}
+	])
+	.controller('settingCtrl', [
+		'investlib',
+		'$scope',
+		'permissions',
+		function(investlib, $scope, permissions) {
+			var $confirm = $('#logout-confirm'),
+				$settingbar = $('#setting-bar')
+
+			$scope.close = function() {
+				$settingbar.offCanvas('close');
+			}
 
 			$scope.logout = function() {
 				$confirm.modal({
 					onConfirm: function() {
 						$confirm.modal('close');
+						$settingbar.offCanvas('close');
 						permissions.unauthorize();
-						$location.path('/');
+						investlib.open('/login')
 						$scope.$apply();
 					}
 				});
@@ -107,7 +186,6 @@ angular.module('testApp')
 				httplib.get('CommonUserDetail?account=' + permissions.getAccount(),
 					true,
 					function(data) {
-						console.log(data)
 						$scope.user = data;
 					})
 			})
@@ -154,12 +232,6 @@ angular.module('testApp')
 		}
 	])
 	.controller('userlistCtrl', [function() {}])
-	.controller('listCtrl', [
-		'permissions',
-		function(permissions) {
-			// alert(permissions.getToken())
-		}
-	])
 	.controller('projectCtrl', [
 		'$scope',
 		'$location',
@@ -183,6 +255,7 @@ angular.module('testApp')
 							$location.path('/myproject');
 						})
 				} else {
+					//$scope.project.UserId = 
 					httplib.post('TabProject', $scope.project,
 						true,
 						function(data, status) {

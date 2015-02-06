@@ -9,11 +9,14 @@ app.run([function() {
 	.config([
 		'$routeProvider',
 		'$locationProvider',
+		'$httpProvider',
 		function($routeProvider, $locationProvider, $httpProvider) {
+			$httpProvider.interceptors.push("redirectService");
+
 			$routeProvider
 				.when('/', {
 					templateUrl: 'apps/views/list.html',
-					controller: 'accountCtrl',
+					controller: 'listCtrl',
 					resolve: {
 						permission: function(permissions, $location) {
 							if (!permissions.isAuthorized()) {
@@ -37,7 +40,7 @@ app.run([function() {
 					templateUrl: 'apps/views/register.html',
 					controller: 'accountCtrl'
 				})
-				.when('/setting',{
+				.when('/setting', {
 					templateUrl: 'apps/views/setting.html',
 					controller: 'settingCtrl'
 				})

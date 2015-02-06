@@ -1,101 +1,32 @@
-<div class="page">
-
   <div id="wrapper" data-am-widget="list_news"
        class="am-list-news am-list-news-default">
     <div class="am-list-news-bd">
-      <div class="pull-action loading" id="pull-down" ng-show>
-        <span class="am-icon-arrow-down pull-label"
-              id="pull-down-label"> 下拉刷新</span>
+      <div class="pull-action" id="pull-down" ng-class="{loading:isPulldown}">
+        <span class="am-icon-arrow-down pull-label" id="pull-down-label">下拉刷新</span>
         <span class="am-icon-spinner am-icon-spin"></span>
       </div>
       <ul class="am-list" id="events-list">
-        <li class="am-list-item-desced">
-          <div class="am-list-item-text">
-            正在加载内容...
+        <li class="am-list-item-desced" ng-show="project.length==0">
+          <div class="am-list-item-text">正在加载内容...</div>
+        </li>
+        <li class="am-g am-list-item-desced" ng-repeat="item in project" style="padding-left:10px">
+          <div class="am-u-sm-6 list-detail-panel">
+            <a href="" class="am-list-item-hd" ng-bind="item.ProjectFullName"></a>
+            <div class="am-list-item-text" ng-bind="item.ProjectIntroduction"></div>
+          </div>
+          <div class="am-u-sm-6 list-func-panel">
+            <button href="#" class="am-btn am-btn-xs am-btn-primary am-fr" ng-click="addFriend(item)">交换名片</button>
           </div>
         </li>
       </ul>
-      <div class="pull-action" id="pull-up">
-        <span class="am-icon-arrow-down pull-label"
-              id="pull-up-label"> 上拉加载更多</span>
+      <div class="pull-action" id="pull-up" ng-class="{loading:isLoadingMore}">
         <span class="am-icon-spinner am-icon-spin"></span>
       </div>
     </div>
   </div>
-</div>
-<script src="public/js/jquery.min.js"></script>
-<script src="public/js/handlebars.min.js"></script>
-<script type="text/x-handlebars-template" id="tpi-list-item">
-  {{#each this}}
-  <li class="am-list-item-desced" data-id="{{id}}">
-    <a href="{{alt}}" class="am-list-item-hd" target="_blank">{{title}}</a>
-
-    <div class="am-list-item-text">{{content}}</div>
-  </li>
-  {{/each}}
-</script>
-<script src="public/js/amazeui.min.js"></script>
-<script src="public/js/amazeui.widgets.helper.js"></script>
-<script>
-  (function($) {
-    var EventsList = function(element, options) {
-      var $main = $('#wrapper');
-      var $pullDown = $main.find('#pull-down');
-      var $pullUp = $main.find('#pull-up');
-      var topOffset = -$pullDown.outerHeight();
-
-      this.setLoading = function($el) {
-        $el.addClass('loading');
-      };
-
-      this.resetLoading = function($el) {
-        $el.removeClass('loading');
-      };
-
-      this.init = function() {
-        var myScroll = this.iScroll = new $.AMUI.iScroll('#wrapper', {});
-        var _this = this;
-        var pullFormTop = false;
-        var pullStart;
-
-        myScroll.on('scrollStart', function() {
-          if (this.y >= topOffset) {
-            pullFormTop = true;
-          }
-
-          pullStart = this.y;
-          // console.log(this);
-        });
-
-        myScroll.on('scrollEnd', function() {
-          if (pullFormTop && this.directionY === -1) {
-            _this.handlePullDown();
-          }
-          pullFormTop = false;
-
-          // pull up to load more
-          if (pullStart === this.y && (this.directionY === 1)) {
-            _this.handlePullUp();
-          }
-        });
-      };
-
-      this.handlePullDown = function() {
-
-      };
-
-      this.handlePullUp = function() {
-
-      }
-    };
-
-    $(function() {
-      var app = new EventsList(null, {});
-      app.init();
-    });
+  <script type="text/javascript">
 
     document.addEventListener('touchmove', function(e) {
       e.preventDefault();
     }, false);
-  })(window.jQuery);
-</script>
+  </script>

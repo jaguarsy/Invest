@@ -3,7 +3,8 @@ angular.module('testApp')
 		'$rootScope',
 		'$cookies',
 		'$http',
-		function($rootScope, $cookies, $http) {
+		'$location',
+		function($rootScope, $cookies, $http, $location) {
 			return {
 				authorize: function(token, acount) {
 					$cookies.token = token;
@@ -22,8 +23,51 @@ angular.module('testApp')
 				unauthorize: function() {
 					delete $cookies.token;
 					delete $cookies.account;
+				},
+				checkAuthorize: function() {
+					if (!this.isAuthorized()) {
+						this.unauthorize();
+						$location.path('/login');
+					}
 				}
 			};
+		}
+	])
+	.factory("redirectService", [
+		"$q",
+		'$cookies',
+		function($q, $cookies) {
+			var unauthorize = function() {
+				delete $cookies.token;
+				delete $cookies.account;
+			}
+
+			var redirectService = {
+				requestError: function(config) {
+					//console.log(config)
+				},
+				response: function(res) {
+					if (res) {
+						var data = res.status;
+						if (data == 401) {
+							unauthorize();
+							location.href = '#login';
+						} else return res;
+					}
+					return res = {
+						data: {
+							data: ""
+						}
+					}
+				},
+				responseError: function(res) {
+					if (res.status == 401) {
+						unauthorize();
+						location.href = '#login';
+					}
+				}
+			};
+			return redirectService
 		}
 	])
 	.factory('httplib', [
