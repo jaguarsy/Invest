@@ -50,11 +50,11 @@ angular.module('testApp')
 				httplib.get('AuthApi/login?UserName=' + username + '&Password=' + password,
 					false,
 					function(data, status) {
-						$loading.modal('close')
 						if (data.token) {
 							permissions.authorize(data.token, username);
 							//$location.path('/')
 							investlib.open('/')
+							$loading.modal('close')
 						}
 					},
 					function(data, status) {
@@ -73,63 +73,23 @@ angular.module('testApp')
 		'httplib',
 		'$scope',
 		function(httplib, $scope) {
-			var iScroll,
-				topOffset = -$('#pull-down').outerHeight(),
-				pullUp = $('#pull-up');
+			var $dimmer = $('.am-dimmer');
 
-			$scope.isPulldown = false;
-			$scope.isLoadingMore = false;
+			$dimmer.hide();
 
-			var renderList = function(page, size, type) {
+			var renderList = function(page, size) {
 				httplib.get('TabProject?page=' + page + '&pagesize=' + size,
 					true,
 					function(data, status) {
 						$scope.project = data.ResultList;
-						setTimeout(function() {
-							iScroll.refresh();
-						}, 100);
-						$scope.isPulldown = false;
-						$scope.isLoadingMore = false;
-						if (type != 'load') {
-							iScroll.scrollTo(0, topOffset, 800, $.AMUI.iScroll.utils.circular);
-						}
 					})
 			}
 
 			var init = function() {
 				var page = 1,
-					pageSize = 10,
-					pullFormTop = false,
-					pullStart;
+					pageSize = 10;
 
-				iScroll = new $.AMUI.iScroll('#wrapper', {});
 				renderList(1, pageSize);
-
-				var handlePullDown = function() {
-					$scope.isPulldown = true;
-					renderList(1, pageSize);
-				};
-
-				iScroll.on('scrollStart', function() {
-					if (this.y >= topOffset) {
-						pullFormTop = true;
-					}
-
-					pullStart = this.y;
-				});
-
-				iScroll.on('scrollEnd', function() {
-					if (pullFormTop && this.directionY === -1) {
-						handlePullDown();
-					}
-					pullFormTop = false;
-				});
-
-				pullUp.on('inview:scrollspy:amui', function() {
-					console.log('进入视口');
-				}).on('outview:scrollspy:amui', function() {
-					console.log('离开视口');
-				});
 			}
 
 			init();

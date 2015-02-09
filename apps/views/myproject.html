@@ -1,7 +1,7 @@
 <div>
 	<ul class="am-list">
 		<li class="am-g am-list-item-desced" ng-repeat="item in list" style="padding-left:10px">
-			<a href="#project/{{item.Id}}" class="am-list-item-hd"><strong ng-bind="item.ProjectFullName"></strong></a>
+			<a href="#project/edit/{{item.Id}}" class="am-list-item-hd"><strong ng-bind="item.ProjectFullName"></strong></a>
 			<div class="am-list-item-text" ng-bind="item.ProjectIntroduction"></div>
 		</li>
 	</ul>

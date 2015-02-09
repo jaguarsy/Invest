@@ -1,32 +1,21 @@
-  <div id="wrapper" data-am-widget="list_news"
-       class="am-list-news am-list-news-default">
-    <div class="am-list-news-bd">
-      <div class="pull-action" id="pull-down" ng-class="{loading:isPulldown}">
-        <span class="am-icon-arrow-down pull-label" id="pull-down-label">下拉刷新</span>
-        <span class="am-icon-spinner am-icon-spin"></span>
-      </div>
-      <ul class="am-list" id="events-list">
-        <li class="am-list-item-desced" ng-show="project.length==0">
-          <div class="am-list-item-text">正在加载内容...</div>
-        </li>
-        <li class="am-g am-list-item-desced" ng-repeat="item in project" style="padding-left:10px">
-          <div class="am-u-sm-6 list-detail-panel">
-            <a href="" class="am-list-item-hd" ng-bind="item.ProjectFullName"></a>
-            <div class="am-list-item-text" ng-bind="item.ProjectIntroduction"></div>
-          </div>
-          <div class="am-u-sm-6 list-func-panel">
-            <button href="#" class="am-btn am-btn-xs am-btn-primary am-fr" ng-click="addFriend(item)">交换名片</button>
-          </div>
-        </li>
-      </ul>
-      <div class="pull-action" id="pull-up" ng-class="{loading:isLoadingMore}">
-        <span class="am-icon-spinner am-icon-spin"></span>
-      </div>
-    </div>
+<div class="search-panel">
+  <input type="text" class="am-form-field am-round" placeholder="搜索" ng-model="keyword"/>
+</div>
+<div class="am-list-news am-list-news-default" style="margin:0">
+  <div class="am-list-news-bd">
+    <ul class="am-list" id="events-list">
+      <li class="am-list-item-desced" ng-show="project.length==0">
+        <div class="am-list-item-text">正在加载内容...</div>
+      </li>
+      <li class="am-g am-list-item-desced" ng-repeat="item in project|filter:keyword" style="padding-left:10px">
+        <div class="am-u-sm-6 list-detail-panel">
+          <a href="#project/{{item.Id}}" class="am-list-item-hd" ng-bind="item.ProjectFullName"></a>
+          <div class="am-list-item-text" ng-bind="item.ProjectIntroduction"></div>
+        </div>
+        <div class="am-u-sm-6 list-func-panel">
+          <button href="#" class="am-btn am-btn-xs am-btn-success am-fr" ng-click="addFriend(item)">交换名片</button>
+        </div>
+      </li>
+    </ul>
   </div>
-  <script type="text/javascript">
-
-    document.addEventListener('touchmove', function(e) {
-      e.preventDefault();
-    }, false);
-  </script>
+</div>

@@ -4,7 +4,7 @@ angular.module('testApp')
 		function($location) {
 			function link(scope, element, attrs) {
 				var path = {
-					'^\/$': '项目列表',
+					'^\/$': '所有项目',
 					'^\/login$': '用户登录',
 					'^\/register$': '用户注册',
 					'^\/user$': '用户资料',
