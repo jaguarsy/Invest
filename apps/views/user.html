@@ -26,7 +26,10 @@
 						<option value="女">女</option>
 					</select>
 				</div>
-				<div class="am-u-sm-6 am-u-md-7"></div>
+				<label class="am-u-sm-2 am-u-md-2 am-form-label" style="padding-left:5px;">生日</label>
+				<div class="am-u-sm-4 am-u-md-3">
+					<input type="text" class="am-form-field" id="birthday" ng-value="user.BirthDay"/>
+				</div>
 			</div>
 
 			<div class="am-form-group">
@@ -80,11 +83,18 @@
 			</div>
 
 			<div class="am-form-group">
+				<label class="am-u-sm-2 am-u-md-2 am-form-label">电话</label>
+				<div class="am-u-sm-4 am-u-md-3">
+					<input type="text" ng-value="user.Phone" ng-model="user.Phone"/>
+				</div>
+				<div class="am-u-md-6 am-u-md-7"></div>
+			</div>
+
+			<div class="am-form-group">
 				<label class="am-u-sm-2 am-u-md-2 am-form-label">行业</label>
 				<div class="am-u-sm-7 am-u-md-8">
-					<select ng-model="user.IndustryId">
-						<option ng-repeat="item in industry" value="{{item.Id}}" ng-bind="item.IndustryText"></option>
-					</select>
+					<select ng-model="user.IndustryId"
+					ng-options="item.Id as item.IndustryText for item in industry"></select>
 				</div>
 				<div class="am-u-sm-3 am-u-md-2">
 					<div class="checkbox">
@@ -97,7 +107,8 @@
 			<div class="am-form-group">
 				<label class="am-u-sm-2 am-u-md-2 am-form-label">常住地</label>
 				<div class="am-u-sm-7 am-u-md-8">
-					<input type="text" />
+					<select ng-model="user.PersonLocationId"
+					ng-options="item.Id as item.PersonLocationText for item in locations"></select>
 				</div>
 				<div class="am-u-sm-3 am-u-md-2">
 					<div class="checkbox">

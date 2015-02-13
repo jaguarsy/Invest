@@ -73,7 +73,8 @@ angular.module('testApp')
 		'httplib',
 		'$scope',
 		function(httplib, $scope) {
-			var $dimmer = $('.am-dimmer');
+			var $dimmer = $('.am-dimmer'),
+				$friendPrompt = $('#addfriendprompt');
 
 			$dimmer.hide();
 
@@ -81,24 +82,31 @@ angular.module('testApp')
 				httplib.get('TabProject?page=' + page + '&pagesize=' + size,
 					true,
 					function(data, status) {
-						$scope.project = data.ResultList;
+						$scope.project = data;
 					})
 			}
 
 			var init = function() {
 				var page = 1,
-					pageSize = 10;
+					pageSize = 100;
 
 				renderList(1, pageSize);
 			}
 
 			init();
-			$scope.addFriend = function(project) {
-				httplib.post('TabFpUserRelation',
-					true, {},
-					function(data, status) {
-						$scope.project = data;
-					})
+			$scope.addFriend = function(userid) {
+				$friendPrompt.modal({
+					relatedTarget: this,
+					onConfirm: function(e) {
+						httplib.post('TabFpUserRelation', {
+							ResponseFpUserId: userid,
+							RequestMessage: e.data || '',
+							RequestFpUserId: 0
+						}, true, function(data, status) {
+
+						})
+					}
+				});
 			}
 		}
 	])
@@ -137,18 +145,29 @@ angular.module('testApp')
 				$confirm = $('#confirm'),
 				$loading = $('#loading');
 
+			$scope.user = {};
 			httplib.get('TabIndustry', true, function(data, status) {
 				$scope.industry = data;
-				if (status == 401) {
-					permissions.unauthorize();
-					$location.path('/login')
-				}
-				httplib.get('CommonUserDetail?account=' + permissions.getAccount(),
-					true,
-					function(data) {
-						$scope.user = data;
-					})
+				$scope.user.IndustryId = data[0].Id;
 			})
+
+			httplib.get('TabPersonLocation', true, function(data, status) {
+				$scope.locations = data;
+				$scope.user.PersonLocationId = data[0].Id;
+			})
+
+			httplib.get('CommonUserDetail?account=' + permissions.getAccount(),
+				true,
+				function(data) {
+					$scope.user = data;
+				})
+
+			$('#birthday').datepicker({
+				format: 'yyyy-mm-dd'
+			}).
+			on('changeDate.datepicker.amui', function(event) {
+				$scope.user.BirthDay = event.target.value;
+			});
 
 			$scope.submit = function() {
 				httplib.put('CommonUserDetail/' + $scope.user.Id,
@@ -182,16 +201,28 @@ angular.module('testApp')
 		'$routeParams',
 		'$scope',
 		'httplib',
-		function($routeParams, $scope, httplib) {
-			httplib.get('CommonUserDetail/' + $routeParams.id,
+		function($routeParams, $scope, httplib) {}
+	])
+	.controller('userlistCtrl', [
+		'$scope',
+		'httplib',
+		function($scope, httplib) {
+
+			httplib.get('TabFpUserRelation',
 				true,
 				function(data) {
-					console.log(data)
-						//$scope.user = data;
+					// console.log(data)
 				})
+
+			var getUsers = function() {
+				httplib.get('TabFpUserRelation',
+					true,
+					function(data) {
+						$scope.list = data;
+					})
+			}
 		}
 	])
-	.controller('userlistCtrl', [function() {}])
 	.controller('projectCtrl', [
 		'$scope',
 		'$location',
@@ -201,8 +232,29 @@ angular.module('testApp')
 			var $confirm = $('#confirm'),
 				id = $routeParams.id;
 
+			$scope.project = {};
+			httplib.get('TabIndustry', true, function(data) {
+				$scope.industry = data;
+				$scope.project.IndustryId = data[0].Id;
+			})
+
+			httplib.get('TabProjectState', true, function(data) {
+				$scope.ProjectStates = data;
+				$scope.project.ProjectStateId = data[0].Id;
+			})
+
+			httplib.get('TabPersonLocation', true, function(data) {
+				$scope.locations = data;
+				$scope.project.TabPersonLocation = data[0].PersonLocationText;
+			})
+
+			httplib.get('TabCompanyNature', true, function(data) {
+				$scope.natures = data;
+				$scope.project.CompanyNatureId = data[0].Id;
+			})
+
 			if (id) {
-				httplib.get('TabProject/' + id, true, function(data, status) {
+				httplib.get('TabProject/' + id, true, function(data) {
 					$scope.project = data;
 				})
 			}

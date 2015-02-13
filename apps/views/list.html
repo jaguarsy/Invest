@@ -8,14 +8,30 @@
         <div class="am-list-item-text">正在加载内容...</div>
       </li>
       <li class="am-g am-list-item-desced" ng-repeat="item in project|filter:keyword" style="padding-left:10px">
-        <div class="am-u-sm-6 list-detail-panel">
+        <div class="am-u-sm-8 list-detail-panel">
           <a href="#project/{{item.Id}}" class="am-list-item-hd" ng-bind="item.ProjectFullName"></a>
           <div class="am-list-item-text" ng-bind="item.ProjectIntroduction"></div>
+          <hr/>
+          <span class="am-badge am-badge-warning am-radius">官方认证&nbsp;<span class="am-icon-check-square-o"></span></span>
+          <span class="am-badge am-badge-secondary am-radius">用户认证&nbsp;<span class="am-icon-check-square-o"></span></span>
         </div>
-        <div class="am-u-sm-6 list-func-panel">
-          <button href="#" class="am-btn am-btn-xs am-btn-success am-fr" ng-click="addFriend(item)">交换名片</button>
+        <div class="am-u-sm-4 list-func-panel">
+          <button href="#" class="am-btn am-btn-xs am-btn-success am-fr" ng-click="addFriend(item.UserId)">交换名片</button>
         </div>
       </li>
     </ul>
+  </div>
+</div>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="addfriendprompt">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">交换名片</div>
+    <div class="am-modal-bd">
+      留言：
+      <input type="text" class="am-modal-prompt-input" ng-model="RequestMessage">
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+      <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+    </div>
   </div>
 </div>

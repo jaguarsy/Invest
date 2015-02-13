@@ -11,7 +11,8 @@ angular.module('testApp')
 					'^\/usershow$': '个人资料',
 					'^\/userlist$': '名片列表',
 					'^\/project$': '创建项目',
-					'^\/project\/\\d+$': '修改项目',
+					'^\/project\/\\d+$': '项目详情',
+					'^\/project\/edit\/\\d+$': '修改项目',
 					'^\/setting$': '设置',
 					'^\/myproject$': '我的项目'
 				};
@@ -73,3 +74,21 @@ angular.module('testApp')
 			}
 		}
 	})
+	.directive('changeSelect', ['$interval', function($interval) {
+		return {
+
+			link: function(scope, element, attrs) {
+				var stop;
+
+				scope.$watch(attrs.ngModel, function(value) {
+					if (!value) return;
+					// stop = $interval(function() {
+					// 		console.log(value)
+					// 	if (!scope.$$phase) {
+					// 		$interval.cancel(stop);
+					// 	}
+					// }, 100);
+				});
+			}
+		}
+	}])

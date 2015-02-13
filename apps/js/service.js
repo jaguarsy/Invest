@@ -78,6 +78,7 @@ angular.module('testApp')
 				headers;
 			return {
 				http: function(method, url, auth, callback, data, errorCallback) {
+					//console.log(method, url, auth, data)
 					if (auth) {
 						headers = {
 							'Authorization': 'Bearer ' + permissions.getToken()
@@ -91,9 +92,11 @@ angular.module('testApp')
 							headers: headers
 						})
 						.success(function(data, status) {
+							//console.log(data, status)
 							callback(data, status);
 						})
 						.error(function(data, status) {
+							//console.log(data, status)
 							if (!errorCallback) return;
 							errorCallback(data, status);
 						})
