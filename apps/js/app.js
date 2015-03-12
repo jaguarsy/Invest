@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 var permission,
 	app = angular.module('testApp', ['ngRoute', 'ngCookies']);

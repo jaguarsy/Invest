@@ -43,8 +43,9 @@ angular.module('testApp')
 			}
 
 			var redirectService = {
-				requestError: function(config) {
-					//console.log(config)
+			    requestError: function(rejection) {
+				    //console.log(config)
+				    return $q.reject(rejection);
 				},
 				response: function(res) {
 					if (res) {
@@ -65,9 +66,11 @@ angular.module('testApp')
 						unauthorize();
 						location.href = '#login';
 					}
+					else 
+					    return $q.reject(res);
 				}
 			};
-			return redirectService
+		    return redirectService;
 		}
 	])
 	.factory('httplib', [
@@ -84,22 +87,23 @@ angular.module('testApp')
 							'Authorization': 'Bearer ' + permissions.getToken()
 						};
 					}
-					$http({
-							method: method,
-							url: api + url,
-							//withCredentials: true,
-							data: data,
-							headers: headers
-						})
-						.success(function(data, status) {
-							//console.log(data, status)
-							callback(data, status);
-						})
-						.error(function(data, status) {
-							//console.log(data, status)
-							if (!errorCallback) return;
-							errorCallback(data, status);
-						})
+				    $http({
+				            method: method,
+				            url: api + url,
+				            //withCredentials: true,
+				            data: data,
+				            headers: headers
+				        })
+				        .success(function(data, status, headers, config) {
+				            //console.log(data, status)
+				            console.log("success load");
+				            callback(data, status);
+				        })
+				        .error(function (data, status, headers, config) {
+				            console.log(data);
+				            if (!errorCallback) return;
+				            errorCallback(data, status);
+				        });
 				},
 				post: function(url, data, auth, callback, error) {
 					this.http('POST', url, auth, callback, data, error);

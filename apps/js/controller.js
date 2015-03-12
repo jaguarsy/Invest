@@ -19,30 +19,30 @@ angular.module('testApp')
 					return;
 				}
 
-				httplib.post('AuthApi/register', {
-					UserName: $scope.username,
-					Email: $scope.email,
-					Password: $scope.password,
-					ConfirmPassword: $scope.cpassword
-				}, false, function(data, status) {
-					if (status == 200) {
-						$confirm.modal({
-							onConfirm: function() {
-								$confirm.modal('close');
-								login($scope.username, $scope.password);
-							},
-							onCancel: function() {
-								$confirm.modal('close');
-							}
-						});
-					} else {
-						$scope.message = '注册失败！';
-						$alert.modal();
-					}
-				}, function(data, status) {
-					$scope.message = data.Message;
-					$alert.modal();
-				})
+			    httplib.post('AuthApi/register', {
+			        UserName: $scope.username,
+			        Email: $scope.email,
+			        Password: $scope.password,
+			        ConfirmPassword: $scope.cpassword
+			    }, false, function(data, status) {
+			        if (status == 200) {
+			            $confirm.modal({
+			                onConfirm: function() {
+			                    $confirm.modal('close');
+			                    login($scope.username, $scope.password);
+			                },
+			                onCancel: function() {
+			                    $confirm.modal('close');
+			                }
+			            });
+			        } else {
+			            $scope.message = '注册失败！' + angular.fromJson(data).Message;
+			            $alert.modal();
+			        }
+			    }, function(data) {
+			        $scope.message = '注册失败！' + angular.fromJson(data).Message;
+			        $alert.modal();
+			    });
 			}
 
 			var login = function(username, password) {
@@ -190,7 +190,7 @@ angular.module('testApp')
 				$confirm.modal({
 					onConfirm: function() {
 						$confirm.modal('close');
-						$location.path('/setting');
+						$location.path('/');
 						$scope.$apply();
 					}
 				});
@@ -281,7 +281,7 @@ angular.module('testApp')
 				$confirm.modal({
 					onConfirm: function() {
 						$confirm.modal('close');
-						$location.path('/setting');
+						$location.path('/');
 						$scope.$apply();
 					}
 				});
