@@ -79,7 +79,6 @@ angular.module('testApp')
 
 			link: function(scope, element, attrs) {
 				var stop;
-
 				scope.$watch(attrs.ngModel, function(value) {
 					if (!value) return;
 					// stop = $interval(function() {
