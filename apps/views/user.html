@@ -1,154 +1,159 @@
 <div style="padding-top:5px">
-	<div class="inline-panel">
-		<form class="am-form am-form-horizontal">
-			<div class="am-form-group">
-				<label class="am-u-sm-2 am-u-md-2 am-form-label">姓</label>
-				<div class="am-u-sm-3 am-u-md-3">
-					<input type="text" ng-value="user.FirstName" ng-model="user.FirstName"/>
-				</div>
-				<label class="am-u-sm-1 am-u-md-2 am-form-label" style="padding-left:5px;">名</label>
-				<div class="am-u-sm-3 am-u-md-3">
-					<input type="text" ng-value="user.LastName" ng-model="user.LastName"/>
-				</div>
-				<div class="am-u-sm-3 am-u-md-2">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox">不公开</label>
-					</div>
-				</div>
-			</div>
+    <div class="inline-panel">
+        <form class="am-form am-form-horizontal">
+            <div class="am-form-group">
+                <label class="am-u-sm-2 am-u-md-2 am-form-label">姓</label>
+                <div class="am-u-sm-3 am-u-md-3">
+                    <input type="text" ng-value="user.FirstName" ng-model="user.FirstName" />
+                </div>
+                <label class="am-u-sm-1 am-u-md-2 am-form-label" style="padding-left:5px;">名</label>
+                <div class="am-u-sm-3 am-u-md-3">
+                    <input type="text" ng-value="user.LastName" ng-model="user.LastName" />
+                </div>
+                <div class="am-u-sm-3 am-u-md-2">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">不公开
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-			<div class="am-form-group">
-				<label class="am-u-sm-2 am-u-md-2 am-form-label">性别</label>
-				<div class="am-u-sm-4 am-u-md-3">
-					<select ng-selected="user.Gender" ng-model="user.Gender">
-						<option value="男">男</option>
-						<option value="女">女</option>
-					</select>
-				</div>
-				<label class="am-u-sm-2 am-u-md-2 am-form-label" style="padding-left:5px;">生日</label>
-				<div class="am-u-sm-4 am-u-md-3">
-					<input type="text" class="am-form-field" id="birthday" ng-value="user.BirthDay"/>
-				</div>
-			</div>
+            <div class="am-form-group">
+                <label class="am-u-sm-2 am-u-md-2 am-form-label">性别</label>
+                <div class="am-u-sm-4 am-u-md-3">
+                    <select ng-selected="user.Gender" ng-model="user.Gender">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+                <label class="am-u-sm-2 am-u-md-2 am-form-label" style="padding-left:5px;">生日</label>
+                <div class="am-u-sm-4 am-u-md-3">
+                    <input type="text" class="am-form-field" id="birthday" ng-value="user.BirthDay" />
+                </div>
+            </div>
 
-			<div class="am-form-group">
-				<label class="am-u-sm-2 am-u-md-2 am-form-label">公司</label>
-				<div class="am-u-sm-7 am-u-md-8">
-					<input type="text" ng-value="user.Company" ng-model="user.Company"/>
-				</div>
-				<div class="am-u-sm-3 am-u-md-2">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox">不公开</label>
-					</div>
-				</div>
-			</div>
+            <div class="am-form-group">
+                <label class="am-u-sm-2 am-u-md-2 am-form-label">公司</label>
+                <div class="am-u-sm-7 am-u-md-8">
+                    <input type="text" ng-value="user.Company" ng-model="user.Company" />
+                </div>
+                <div class="am-u-sm-3 am-u-md-2">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">不公开
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-			<div class="am-form-group">
-				<label class="am-u-sm-2 am-u-md-2 am-form-label">职务</label>
-				<div class="am-u-sm-7 am-u-md-8">
-					<input type="text" ng-value="user.Position" ng-model="user.Position"/>
-				</div>
-				<div class="am-u-sm-3 am-u-md-2">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox">不公开</label>
-					</div>
-				</div>
-			</div>
+            <div class="am-form-group">
+                <label class="am-u-sm-2 am-u-md-2 am-form-label">职务</label>
+                <div class="am-u-sm-7 am-u-md-8">
+                    <input type="text" ng-value="user.Position" ng-model="user.Position" />
+                </div>
+                <div class="am-u-sm-3 am-u-md-2">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">不公开
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-			<div class="am-form-group">
-				<label class="am-u-sm-2 am-u-md-2 am-form-label">手机</label>
-				<div class="am-u-sm-4 am-u-md-3">
-					<input type="text" ng-value="user.CellPhone" ng-model="user.CellPhone"/>
-				</div>
-				<label class="am-u-sm-2 am-u-md-2 am-form-label" style="padding-left:5px;">QQ</label>
-				<div class="am-u-sm-4 am-u-md-3">
-					<input type="text" ng-value="user.QQ" ng-model="user.QQ"/>
-				</div>
-				<div class="am-u-md-2"></div>
-			</div>
+            <div class="am-form-group">
+                <label class="am-u-sm-2 am-u-md-2 am-form-label">手机</label>
+                <div class="am-u-sm-4 am-u-md-3">
+                    <input type="text" ng-value="user.CellPhone" ng-model="user.CellPhone" />
+                </div>
+                <label class="am-u-sm-2 am-u-md-2 am-form-label" style="padding-left:5px;">QQ</label>
+                <div class="am-u-sm-4 am-u-md-3">
+                    <input type="text" ng-value="user.QQ" ng-model="user.QQ" />
+                </div>
+                <div class="am-u-md-2"></div>
+            </div>
 
-			<div class="am-form-group">
-				<label class="am-u-sm-2 am-u-md-2 am-form-label">邮箱</label>
-				<div class="am-u-sm-4 am-u-md-3">
-					<input type="text" ng-value="user.Email" ng-model="user.Email"/>
-				</div>
-				<label class="am-u-sm-2 am-u-md-2 am-form-label" style="padding-left:5px;">微信</label>
-				<div class="am-u-sm-4 am-u-md-3">
-					<input type="text" ng-value="user.WeiXinAccount" ng-model="user.WeiXinAccount"/>
-				</div>
-				<div class="am-u-md-2"></div>
-			</div>
+            <div class="am-form-group">
+                <label class="am-u-sm-2 am-u-md-2 am-form-label">邮箱</label>
+                <div class="am-u-sm-4 am-u-md-3">
+                    <input type="text" ng-value="user.Email" ng-model="user.Email" />
+                </div>
+                <label class="am-u-sm-2 am-u-md-2 am-form-label" style="padding-left:5px;">微信</label>
+                <div class="am-u-sm-4 am-u-md-3">
+                    <input type="text" ng-value="user.WeiXinAccount" ng-model="user.WeiXinAccount" />
+                </div>
+                <div class="am-u-md-2"></div>
+            </div>
 
-			<div class="am-form-group">
-				<label class="am-u-sm-2 am-u-md-2 am-form-label">电话</label>
-				<div class="am-u-sm-4 am-u-md-3">
-					<input type="text" ng-value="user.Phone" ng-model="user.Phone"/>
-				</div>
-				<div class="am-u-md-6 am-u-md-7"></div>
-			</div>
+            <div class="am-form-group">
+                <label class="am-u-sm-2 am-u-md-2 am-form-label">电话</label>
+                <div class="am-u-sm-4 am-u-md-3">
+                    <input type="text" ng-value="user.Phone" ng-model="user.Phone" />
+                </div>
+                <div class="am-u-md-6 am-u-md-7"></div>
+            </div>
 
-			<div class="am-form-group">
-				<label class="am-u-sm-2 am-u-md-2 am-form-label">行业</label>
-				<div class="am-u-sm-7 am-u-md-8">
-					<select ng-model="user.IndustryId"
-					ng-options="item.Id as item.IndustryText for item in industry"></select>
-				</div>
-				<div class="am-u-sm-3 am-u-md-2">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox">不公开</label>
-					</div>
-				</div>
-			</div>
+            <div class="am-form-group">
+                <label class="am-u-sm-2 am-u-md-2 am-form-label">行业</label>
+                <div class="am-u-sm-7 am-u-md-8">
+                    <select ng-model="user.IndustryId"
+                            ng-options="item.Id as item.IndustryText for item in industry"></select>
+                </div>
+                <div class="am-u-sm-3 am-u-md-2">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">不公开
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-			<div class="am-form-group">
-				<label class="am-u-sm-2 am-u-md-2 am-form-label">常住地</label>
-				<div class="am-u-sm-7 am-u-md-8">
-					<select ng-model="user.PersonLocationId"
-					ng-options="item.Id as item.PersonLocationText for item in locations"></select>
-				</div>
-				<div class="am-u-sm-3 am-u-md-2">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox">不公开</label>
-					</div>
-				</div>
-			</div>
+            <div class="am-form-group">
+                <label class="am-u-sm-2 am-u-md-2 am-form-label">常住地</label>
+                <div class="am-u-sm-7 am-u-md-8">
+                    <select ng-model="user.PersonLocationId"
+                            ng-options="item.Id as item.PersonLocationText for item in locations"></select>
+                </div>
+                <div class="am-u-sm-3 am-u-md-2">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">不公开
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-			<div class="am-form-group">
-				<label class="am-u-sm-12 am-u-md-2 am-form-label">个人介绍</label>
-				<div class="am-u-sm-12 am-u-md-8">
-					<textarea ng-bind="user.IndustryText" ng-model="user.PersonIntroduction"></textarea>
-				</div>
-				<div class="am-u-md-2"></div>
-			</div>
+            <div class="am-form-group">
+                <label class="am-u-sm-12 am-u-md-2 am-form-label">个人介绍</label>
+                <div class="am-u-sm-12 am-u-md-8">
+                    <textarea ng-bind="user.IndustryText" ng-model="user.PersonIntroduction"></textarea>
+                </div>
+                <div class="am-u-md-2"></div>
+            </div>
 
-			<div class="am-form-group">
-				<button class="am-btn am-btn-primary am-fr" ng-click="submit()">提交</button>
-				<button class="am-btn am-btn-default am-fr" ng-click="cancel()">取消</button>
-			</div>
-		</form>
-	</div>
+            <div class="am-form-group">
+                <button class="am-btn am-btn-primary am-fr" ng-click="submit()">提交</button>
+                <button class="am-btn am-btn-default am-fr" ng-click="cancel()">取消</button>
+            </div>
+        </form>
+    </div>
 </div>
 <div class="am-modal am-modal-confirm" tabindex="-1" id="alert">
-	<div class="am-modal-dialog">
-		<div class="am-modal-hd">提示</div>
-		<div class="am-modal-bd" ng-bind="message"></div>
-		<div class="am-modal-footer">
-			<span class="am-modal-btn" data-am-modal-confirm>确定</span>
-		</div>
-	</div>
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">提示</div>
+        <div class="am-modal-bd" ng-bind="message"></div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
 </div>
 <div class="am-modal am-modal-confirm" tabindex="-1" id="confirm">
-	<div class="am-modal-dialog">
-		<div class="am-modal-hd">确认</div>
-		<div class="am-modal-bd">你确定取消编辑个人资料吗？</div>
-		<div class="am-modal-footer">
-			<span class="am-modal-btn" data-am-modal-cancel>取消</span>
-			<span class="am-modal-btn" data-am-modal-confirm>确定</span>
-		</div>
-	</div>
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">确认</div>
+        <div class="am-modal-bd">你确定取消编辑个人资料吗？</div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
 </div>

@@ -1,3 +1,0 @@
-1、交换名片并且提交到TabFPUserRelation表后，TabFPUserRelationStateId字段没有赋值，结果是NULL
-2、个人信息现在修改会出错
-3、无法根据用户ID获取用户信息

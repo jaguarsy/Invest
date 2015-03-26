@@ -1,37 +1,47 @@
 <div>
-	<div class="search-panel am-g">
-		<div class="am-u-sm-6">
-			<input type="checkbox" class="item-control">
-			<label class="item-label">我的好友</label>
-			<select change-select id="IndustryId" class="item-control" ng-model="IndustryId"
-					ng-options="item.Id as item.IndustryText for item in industry"></select>
-		</div>
-		<div class="am-u-sm-6">
-			<input class="search" type="text" placeholder="搜索"/>
-		</div>
-	</div>
-	<ul class="userdetail am-list am-list-static">
-		<li ng-repeat="item in list">
-			<!-- <div class="item photo">
-			<img src="public/images/logo.png"></div>
-		<div class="item detail">
-			<h3>李XX</h3>
-			<p>
-				<small>我公司主要XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</small>
-			</p>
-		</div>
-		<div class="item option">
-			<a href="#">
-				<span class="am-badge am-badge-primary">详细</span>
-			</a>
-		</div>
-		-->
-		<p>
-			好友ID：
-			<span ng-bind="item.RequestFpUserId"></span>
-			申请状态：
-			<span ng-bind="item.ObjectState"></span>
-		</p>
-	</li>
-</ul>
+    <div class="search-panel am-g">
+        <div class="am-u-sm-6">
+            <input type="checkbox" class="item-control">
+            <label class="item-label">我的好友</label>
+            <select change-select id="IndustryId" class="item-control" ng-model="IndustryId"
+                    ng-options="item.Id as item.IndustryText for item in industry"></select>
+        </div>
+        <div class="am-u-sm-6">
+            <input class="search" type="text" placeholder="搜索" />
+        </div>
+    </div>
+    <ul class="userdetail am-list am-list-static">
+        <li ng-repeat="item in list" class="am-cf">
+            <!--<div class="item photo">
+                <img src="public/images/logo.png">
+            </div>-->
+            <div class="item option">
+                <button class="am-btn am-btn-warning" ng-if="item.FpUserRelationStateId==1" ng-click="accept(item.Id)">
+                    接受
+                </button>
+                <a class="am-btn am-btn-primary" ng-if="item.FpUserRelationStateId==2" href="#usershow/{{item.RequestFpUser.Id}}">
+                    详细
+                </a>
+            </div>
+            <div class="item detail">
+                <h3 ng-bind-template="{{item.RequestFpUser.FirstName}}{{item.RequestFpUser.LastName}}"></h3>
+                <p>
+                    <small ng-if="item.FpUserRelationStateId==1" ng-bind="item.RequestMessage"></small>
+                </p>
+                <p>
+                    <small ng-if="item.FpUserRelationStateId==2" ng-bind="item.RequestFpUser.PersonIntroduction"></small>
+                </p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="alert">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">提示</div>
+        <div class="am-modal-bd" ng-bind="message"></div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">确定</span>
+        </div>
+    </div>
 </div>

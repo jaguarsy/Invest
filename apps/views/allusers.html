@@ -1,0 +1,25 @@
+﻿<div>
+    <div class="search-panel am-g">
+        <div class="am-u-sm-6">
+            <input class="search" type="text" placeholder="搜索" />
+        </div>
+    </div>
+    <ul class="userdetail am-list am-list-static">
+        <li ng-repeat="item in list" class="am-cf">
+            <!--<div class="item photo">
+                <img src="public/images/logo.png">
+            </div>-->
+            <div class="item option">
+                <a class="am-btn am-btn-primary" href="#usershow/{{item.Id}}">
+                    详细
+                </a>
+            </div>
+            <div class="item detail">
+                <h3 ng-bind-template="{{item.FirstName}}{{item.LastName}}"></h3>
+                <p>
+                    <small ng-bind="item.PersonIntroduction"></small>
+                </p>
+            </div>
+        </li>
+    </ul>
+</div>

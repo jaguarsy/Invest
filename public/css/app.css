@@ -1,32 +1,32 @@
-.list-detail-panel a{
-	color: #000000;
+.list-detail-panel a {
+    color: #000000;
 }
 
-.list-detail-panel hr{
-	margin: 5px 0;
+.list-detail-panel hr {
+    margin: 5px 0;
 }
 
-.list-func-panel{
-	padding-top:12px;
+.list-func-panel {
+    padding-top: 12px;
 }
 
-.list-func-panel button.am-btn{
-	padding-left: 8px;
-	padding-right: 8px;
-}
+    .list-func-panel button.am-btn {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
 
 .page {
     height: 100%;
 }
 
-.main{
-	height: 100%;
+.main {
+    height: 100%;
 }
 
 #wrapper {
     position: absolute;
     top: 49px;
-    bottom: -600;
+    bottom: -600px;
     overflow: hidden;
     margin: 0;
     width: 100%;
@@ -38,10 +38,10 @@
     margin: 0;
 }
 
-.am-list > li {
-    background: none;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
-}
+    .am-list > li {
+        background: none;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
 
 .pull-action {
     text-align: center;
@@ -50,143 +50,145 @@
     color: #999;
 }
 
-.pull-action .am-icon-spin {
-    display: none;
+    .pull-action .am-icon-spin {
+        display: none;
+    }
+
+    .pull-action.loading .am-icon-spin {
+        display: block;
+    }
+
+.pull-action {
+    margin-top: -20px;
 }
 
-.pull-action.loading .am-icon-spin {
-    display: block;
+    .pull-action.loading {
+        margin-top: 0;
+    }
+
+        .pull-action.loading .pull-label {
+            display: none;
+        }
+
+.text-center {
+    text-align: center;
 }
 
-.pull-action{
-	margin-top: -20px;
+.inline-panel {
+    font-size: 1.4rem;
+    padding-right: 5px;
 }
 
-.pull-action.loading{
-	margin-top: 0;
+    .inline-panel input, .inline-panel select {
+        padding: .2em !important;
+    }
+
+    .inline-panel label.am-form-label {
+        padding-left: 0;
+        padding-top: 0.29rem;
+        padding-right: 0.3rem;
+    }
+
+    .inline-panel .am-form-group {
+        padding-left: 0.3rem;
+        margin-bottom: 6px;
+    }
+
+        .inline-panel .am-form-group > div {
+            padding: 0;
+        }
+
+    .inline-panel .checkbox {
+        padding-top: 4px;
+        margin-left: 5px;
+    }
+
+    .inline-panel .am-form-group > button {
+        margin-left: 0.3rem;
+    }
+
+.userdetail li {
+    padding: 5px;
+    min-height: 50px;
+    overflow: hidden;
 }
 
-.pull-action.loading .pull-label {
-    display: none;
+    .userdetail li .item {
+        vertical-align: middle;
+    }
+
+        .userdetail li .item h3, .userdetail li .item p {
+            margin: 0;
+        }
+
+    .userdetail li .photo {
+        width: 20%;
+        padding: 5px;
+    }
+
+    .userdetail li .detail {
+        margin-right: 50px;
+    }
+
+    .userdetail li .option {
+        float: right;
+    }
+
+    .userdetail li .detail p {
+        white-space: nowrap;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+    }
+
+    .userdetail li .option span, .userdetail li .option button, .userdetail li .option a {
+        padding: 10px 5px 10px 5px;
+    }
+
+.hidden {
+    display: none !important;
+    visibility: hidden !important;
 }
 
-.text-center{
-	text-align: center;
+.search-panel {
+    font-size: 12px;
+    padding: 5px;
 }
 
-.inline-panel{
-	font-size: 1.4rem;
-	padding-right:5px;
+    .search-panel div {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    .search-panel .item-control, .search-panel .item-label {
+        vertical-align: middle;
+        margin: 0;
+    }
+
+    .search-panel select {
+        display: inline;
+        width: 70px;
+        padding: 0 1px 0 1px;
+        margin-left: 10px;
+    }
+
+    .search-panel .search {
+        display: inline;
+        /*float: right;*/
+        width: 100%;
+        padding: 0;
+    }
+
+.inline-panel .inline-group label {
+    width: auto;
 }
 
-.inline-panel input,.inline-panel select{
-	padding: .2em !important;
+.inline-panel .inline-group select, .inline-panel .inline-group input {
+    display: inline;
+    width: 50%;
 }
 
-.inline-panel label.am-form-label{
-	padding-left: 0;
-	padding-top: 0.29rem;
-	padding-right: 0.3rem;
-}
-
-.inline-panel .am-form-group{
-	padding-left: 0.3rem;
-	margin-bottom: 6px;
-}
-
-.inline-panel .am-form-group>div{
-	padding: 0;
-}
-
-.inline-panel .checkbox{
-	padding-top: 4px;
-	margin-left: 5px;
-}
-
-.inline-panel  .am-form-group>button{
-	margin-left: 0.3rem;
-}
-
-.userdetail li{
-}
-
-.userdetail li .item{
-	display: inline-block;
-	vertical-align:middle;
-}
-
-.userdetail li .item h3, .userdetail li .item p{
-	margin: 0;
-}
-
-.userdetail li .photo{
-	width: 20%;
-	padding: 5px;
-}
-
-.userdetail li .detail{
-	width: 65%;
-}
-
-.userdetail li .option{
-	width: 10%;
-}
-
-.userdetail li .detail p{
-	white-space: nowrap;
-	overflow: hidden;
-	-o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-}
-
-.userdetail li .option span{
-	padding: 10px 5px 10px 5px;
-}
-
-.hidden{
-	display: none !important;
-  	visibility: hidden !important;
-}
-
-.search-panel{
-	font-size: 12px;
-	padding: 5px;
-}
-
-.search-panel div{
-	padding-left: 3px;
-	padding-right: 3px;
-}
-
-.search-panel .item-control, .search-panel .item-label{
-	vertical-align:middle;
-	margin:0;
-}
-
-.search-panel select{
-	display: inline;
-	width: 70px;
-	padding: 0 1px 0 1px;
-	margin-left: 10px;
-}
-
-.search-panel .search{
-	display: inline;
-	/*float: right;*/
-	width: 100%;
-	padding: 0;
-}
-
-.inline-panel .inline-group label{
-	width: auto;
-}
-
-.inline-panel .inline-group select,.inline-panel .inline-group input{
-	display: inline;
-	width: 50%;
-}
-
-.setting-list li a i{
-	width: 20px;
-	text-align: center;
+.setting-list li a i {
+    width: 20px;
+    text-align: center;
 }
