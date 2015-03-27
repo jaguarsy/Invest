@@ -48,6 +48,10 @@ app.run([function() {
 					templateUrl: 'apps/views/user.html',
 					controller: 'userCtrl'
 				})
+                .when('/nav', {
+                    templateUrl: 'apps/views/nav.html',
+                    controller: 'userCtrl'
+                })
 				.when('/usershow/:id', {
 					templateUrl: 'apps/views/usershow.html',
 					controller: 'usershowCtrl'

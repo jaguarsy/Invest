@@ -16,7 +16,7 @@
             -->
             <div class="am-form-group inline-group">
                 <label class="am-u-sm-6 am-u-md-3 am-form-label">3.所属行业：</label>
-                <select change-select id="IndustryId" ng-model="project.IndustryId"
+                <select id="IndustryId" ng-model="project.IndustryId"
                         ng-options="item.Id as item.IndustryText for item in industry"></select>
             </div>
             <div class="am-form-group inline-group">
@@ -36,11 +36,13 @@
             </div>
             <div class="am-form-group inline-group">
                 <label class="am-u-sm-6 am-u-md-3 am-form-label">7.融资规模：</label>
-                <select class="am-inline" style="width:80px;">
-                    <option value="0">人民币</option>
-                    <option value="1">美元</option>
+                <select class="am-inline" style="width:80px;" ng-model="project.FinancingUnit" ng-init="project.FinancingUnit='人民币'">
+                    <option value="人民币">人民币</option>
+                    <option value="美元">美元</option>
+                    <option value="港币">港币</option>
+                    <option value="日元">日元</option>
                 </select>
-                <input type="number" ng-model="project.FinancingSize" />
+                <input type="text" ng-model="project.FinancingSize" commafy />
             </div>
             <div class="am-form-group">
                 <label class="am-u-sm-6 am-u-md-3 am-form-label">8.项目内容：</label>

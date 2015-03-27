@@ -263,22 +263,22 @@ angular.module('testApp')
 		    $scope.project = {};
 		    httplib.get('TabIndustry', true, function (data) {
 		        $scope.industry = data;
-		        $scope.project.IndustryId = data[0].Id;
+		        $scope.project.IndustryId = $scope.project.IndustryId || data[0].Id;
 		    })
 
 		    httplib.get('TabProjectState', true, function (data) {
 		        $scope.ProjectStates = data;
-		        $scope.project.ProjectStateId = data[0].Id;
+		        $scope.project.ProjectStateId = $scope.project.ProjectStateId || data[0].Id;
 		    })
 
 		    httplib.get('TabPersonLocation', true, function (data) {
 		        $scope.locations = data;
-		        $scope.project.TabPersonLocation = data[0].PersonLocationText;
+		        $scope.project.TabPersonLocation = $scope.project.TabPersonLocation || data[0].PersonLocationText;
 		    })
 
 		    httplib.get('TabCompanyNature', true, function (data) {
 		        $scope.natures = data;
-		        $scope.project.CompanyNatureId = data[0].Id;
+		        $scope.project.CompanyNatureId = $scope.project.CompanyNatureId || data[0].Id;
 		    })
 
 		    if (id) {
@@ -289,6 +289,7 @@ angular.module('testApp')
 
 		    $scope.submit = function () {
 		        if (id) {
+		            $scope.project.TabProjectState = undefined;
 		            httplib.put('TabProject/' + id, $scope.project,
 						true,
 						function (data, status) {
@@ -313,6 +314,54 @@ angular.module('testApp')
 		                $scope.$apply();
 		            }
 		        });
+		    }
+
+		    $scope.commafy = function () {
+		        $scope.project.FinancingSize = commafy(delcommafy($scope.project.FinancingSize));
+		    }
+
+		    $scope.delcommafy = function () {
+		        $scope.project.FinancingSize = delcommafy($scope.project.FinancingSize);
+		    }
+
+		    //设置千分位
+		    function commafy(num) {
+                console.log(num)
+		        if ((num + "").trim() == "") {
+		            return "";
+		        }
+		        if (isNaN(num)) {
+		            return "";
+		        }
+		        num = num + "";
+		        if (/^.*\..*$/.test(num)) {
+		            varpointIndex = num.lastIndexOf(".");
+		            varintPart = num.substring(0, pointIndex);
+		            varpointPart = num.substring(pointIndex + 1, num.length);
+		            intPart = intPart + "";
+		            var re = /(-?\d+)(\d{3})/
+		            while (re.test(intPart)) {
+		                intPart = intPart.replace(re, "$1,$2")
+		            }
+		            num = intPart + "." + pointPart;
+		        } else {
+		            num = num + "";
+		            var re = /(-?\d+)(\d{3})/
+		            while (re.test(num)) {
+		                num = num.replace(re, "$1,$2")
+		            }
+		        }
+		        console.log(num)
+		        return num;
+		    }
+
+		    //去除千分位
+		    function delcommafy(num) {
+		        if ((num + "").trim() == "") {
+		            return "";
+		        }
+		        num = num.replace(/,/gi, '');
+		        return num;
 		    }
 		}
 	])
