@@ -203,11 +203,25 @@ angular.module('testApp')
 		function ($routeParams, $scope, httplib) {
 		    var id = $routeParams.id;
 
-		    httplib.get('CommonUserDetail/' + id, true, function (data) {
+		    httplib.get('CommonUserDetail/' + id, true, function(data) {
 		        $scope.user = data;
-		    })
+		    });
 		}
 	])
+    .controller('navCtrl', [
+		'$routeParams',
+		'$scope',
+		'httplib',
+		function ($routeParams, $scope, httplib) {
+		    httplib.get('nav', false, function(data) {
+		        $scope.user = data;
+		        $scope.tabNews = data.TabNews;
+		        $scope.noticeNews = data.NoticeNews;
+		        $scope.tabFinance = data.TabFinance;
+		        $scope.tabProject = data.TabProject;
+		    });
+		}
+    ])
 	.controller('allusersCtrl', [
 		'$scope',
 		'httplib',

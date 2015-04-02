@@ -1,0 +1,59 @@
+﻿<link rel="stylesheet" href="/public/css/nav.css">
+<div class="header">
+    <div class="am-g">
+        <h1>
+            <img src="/public/images/logo.png">
+        </h1>
+    </div>
+</div>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="am-u-lg-6 am-u-sm-6 am-u-md-6">
+            <div class="thumbnail tile tile-medium tile-teal">
+                <a href="#">
+                    <div data-am-widget="slider" class="am-slider am-slider-c4" data-am-flexslider="{controlNav:'false'}">
+                        <ul class="am-slides">
+                            <li ng-repeat="item in tabNews">
+                                <img src="http://img4.duitang.com/uploads/item/201312/05/20131205172421_QKF4K.thumb.600_0.jpeg">
+                                <div class="am-slider-desc">{{item.Title}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                </a>
+            </div>
+            <div class="am-u-lg-6 am-u-sm-6 am-u-md-6">
+                <div class="thumbnail tile tile-medium tile-teal">
+                    <a href="#">
+                        <h1> 活动通知</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <div class="thumbnail tile tile-wide tile-orange">
+                <a href="#">
+                    <i class="am-icon-btn am-icon-twitter"></i>
+                    <h1 class="tile-text">
+                        推荐资金
+                    </h1>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <div class="thumbnail tile tile-wide tile-blue">
+                <a href="#">
+                    <h1 class="tile-text">
+                        推荐项目
+                    </h1><i class="fa fa-3x fa-rss-square"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
